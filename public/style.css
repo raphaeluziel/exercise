@@ -1,0 +1,53 @@
+body{
+  margin: 40px auto;
+  max-width: 780px;
+}
+
+h1{
+  text-align: center;
+}
+
+table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #DAF3F3;
+}
+
+.form{
+  background-color: #F8E1E6;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 4px;
+}
+
+input{
+  background-color: #FEF9E7;
+  max-width: 145px;
+  margin: 5px;
+  padding: 2px;
+}
+
+.button{
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.button:hover{
+  background-color: lightsalmon;
+}
+
+.buttonLink{
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
