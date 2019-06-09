@@ -7,6 +7,9 @@ const cors = require('cors')
 const shortid = require('shortid');
 const helmet = require('helmet');
 
+// To allow the use of the .env file
+require('dotenv').config()
+
 var port = process.env.PORT || 3000;
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
@@ -171,6 +174,5 @@ app.route('/api/exercise/users').get(function(req, res){
   
 });
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
-});
+
+app.listen(8081);
