@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
   <head>
     <title>Exercise Tracker</title>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Load jQuery and Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -14,21 +14,21 @@
     <!-- Load client side js file and css file -->
     <link rel="stylesheet" href="/style.css">
     <script src="/client.js" defer></script>
-  </head>  
-  
+  </head>
+
   <body>
     <h1>Exercise Tracker</h1>
-    
+
     <!-- Register a new user -->
     <div class="form">
         <h3>Register</h3>
-        <p><code>POST /api/exercise/new-user</code></p>
+        <p><code>POST exercise.raphaeluziel.com/api/exercise/new-user</code></p>
         <p>
-          Get json list of all users in database: <a href="https://api-uziel-exercise.glitch.me/api/exercise/users" target="_blank">
-          https://api-uziel-exercise.glitch.me/api/exercise/users</a>
+          Get json list of all users in database: <a href="api/exercise/users" target="_blank">
+          api/exercise/users</a>
         </p>
         <p>
-          Toggle a list of all users as a list by clicking 
+          Toggle a list of all users as a list by clicking
           <span id="getAllUsers" class="buttonLink">here</span>.
         </p>
       <div id="userList">
@@ -39,7 +39,7 @@
         <input id="getUser" type="submit" value="Submit" class="button" >
       </form>
     </div>
-    
+
     <!-- Add exercise -->
     <div class="form">
       <form action="/api/exercise/add" method="post">
@@ -63,16 +63,11 @@
       <input id="from" type="text" placeholder="from (yyyy-mm-dd)">
       <input id="to" type="text" placeholder="to (yyyy-mm-dd)">
       <input id="limit" type="text" placeholder="number to show">
-      <input id="getLogs" type="submit" class="button" /> 
+      <input id="getLogs" type="submit" class="button" />
       <p id="errorMessage" />
     </div>
-    
-    <div id="activityLog" />
-    
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
+    <div id="activityLog" />
+
   </body>
 </html>
