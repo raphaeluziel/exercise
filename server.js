@@ -3,7 +3,7 @@ const app = express()
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
-const cors = require('cors')
+//const cors = require('cors')
 const shortid = require('shortid');
 const helmet = require('helmet');
 
@@ -12,12 +12,13 @@ require('dotenv').config()
 
 var port = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 // HelmetJS protection
 app.use(helmet());
 
-app.use(cors());
+//app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -175,4 +176,6 @@ app.route('/api/exercise/users').get(function(req, res){
 });
 
 
-app.listen(8081);
+app.listen(3000, () => {
+  console.log("hey, i'm running");
+});
