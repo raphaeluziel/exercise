@@ -12,8 +12,8 @@ require('dotenv').config()
 
 var port = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
+//mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URI);
 
 // HelmetJS protection
 app.use(helmet());
@@ -42,7 +42,6 @@ var userModel = mongoose.model('userModel', userSchema);
 
 // Search for and add user
 app.route('/api/exercise/new-user').post(function(req, res){
-
   if (!req.body.username) {return res.send("No username provided");}
 
   // Search the database for the user
@@ -63,16 +62,11 @@ app.route('/api/exercise/new-user').post(function(req, res){
 // Add activities
 app.route('/api/exercise/add').post(function(req, res){
 
-  var date;
-
-  // If user does not provide a date, default to current date
-  req.body.date ? date = new Date(req.body.date) : date = new Date();
-
   // Errors if user leaves out fields, or uses an invalid date format
   if (!req.body.userId) {return res.send("No user ID provided");}
   if (!req.body.description) {return res.send("No description provided");}
   if (!req.body.duration) {return res.send("No duration provided");}
-  if (date == "Invalid Date") {return res.send("Not a valid date format");}
+  if (!req.body.date) {return res.send("No date provided");}
 
   // If user provides correct information, then search for the user
   userModel.findById(req.body.userId, function(err, data){
@@ -89,7 +83,7 @@ app.route('/api/exercise/add').post(function(req, res){
       if(err) return console.log("ERROR SAVING ACTIVITY");
       res.json({
         username: data.username,
-        date: date.toDateString(),
+        date: req.body.date.toDateString(),
         description: req.body.description,
         duration: req.body.duration,
         userId: req.body.userId
@@ -154,10 +148,8 @@ app.route('/api/exercise/log').get(function(req, res){
 
 // Get a list of all users in the database
 app.route('/api/exercise/users').get(function(req, res){
-
   // Select all users
   userModel.find({}, function(err, doc){
-
     if (err) return console.log("ERROR FINDING ALL USERS");
 
     if(!doc) {return res.json({message: "Database is empty"})}
@@ -178,4 +170,5 @@ app.route('/api/exercise/users').get(function(req, res){
 
 app.listen(3000, () => {
   console.log("hey, i'm running");
+  console.log(process.env.MONGO_URI);
 });
